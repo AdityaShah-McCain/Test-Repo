@@ -2,6 +2,7 @@ name: Working Dir and Shells
 on: [push]
 
 # GITHUB_SHA - this is an environment variable which displays the id of the commit
+# shell table - https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
 
 jobs:
   display-wb-info:
