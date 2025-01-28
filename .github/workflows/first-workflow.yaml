@@ -9,6 +9,8 @@ jobs:
         run: echo "Hello World"
       - name: echo another string
         run: echo "Another string"
+      - name: third echo
+        run: echo "Third string"
       - name: Multiline commands
         run: |
           node -v
