@@ -1,6 +1,12 @@
 name: Working Dir and Shells
 on: [push]
 
+# changing default shell
+
+# defaults:
+#   run:
+#     shell: bash
+
 # GITHUB_SHA - this is an environment variable which displays the id of the commit
 # shell table - https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
 
