@@ -3,9 +3,13 @@ on: [push]
 
 # changing default shell
 
-# defaults:
-#   run:
-#     shell: bash
+# default shell: bash in linux (ubuntu), powershell (pwsh) in windows
+
+defaults:
+  run:
+    shell: bash
+    # we can also change the working directory (as long as the directory exists ofcourse)
+    # working-directory: /de/ed
 
 # GITHUB_SHA - this is an environment variable which displays the id of the commit
 # shell table - https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
@@ -21,8 +25,14 @@ jobs:
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
+      - name: Change working directory
+        working-directory: /home/runner
+        run: pwd
   display-wb-info-windows:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Display working dir and list files
         run: |
@@ -31,3 +41,8 @@ jobs:
           echo $env:GITHUB_SHA
           echo $env:GITHUB_REPOSITORY
           echo $env:GITHUB_WORKSPACE
+      - name: Python shell
+        shell: python
+        run: |
+          import platform
+          print(platform.processor())
