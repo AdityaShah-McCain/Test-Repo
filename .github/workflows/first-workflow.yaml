@@ -1,0 +1,13 @@
+name: First Workflow
+on: [push]
+
+jobs:
+  run-shell-commands: # this is an object
+    runs-on: ubuntu-latest # the default shell is bash, for windows its powershell
+    steps:
+      - name: echo a string
+        run: echo "Hello World"
+      - name: Multiline commands
+        run: |
+          node -v
+          npm -v
