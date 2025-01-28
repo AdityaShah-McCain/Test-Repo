@@ -2,7 +2,7 @@ name: First Workflow
 on: [push]
 
 jobs:
-  run-shell-commands: # this is an object
+  run-shell-commands: # this is the job id
     runs-on: ubuntu-latest # the default shell is bash, for windows its powershell
     steps:
       - name: echo a string
@@ -17,3 +17,16 @@ jobs:
         run: |
           node -v
           npm -v
+  parallel-job-macos:
+    runs-on: macos-latest
+    steps:
+      - name: View software version
+        run: sw_vers
+  dependant-job:
+    runs-on: windows-latest
+    needs: [run-shell-commands]
+    steps:
+      - name: echo a string
+        run: Write-Output "Windows string"
+      - name: Error step
+        run: cmddoesnotexist
