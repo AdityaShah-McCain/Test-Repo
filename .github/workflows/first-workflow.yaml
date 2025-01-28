@@ -24,9 +24,13 @@ jobs:
         run: sw_vers
   dependant-job:
     runs-on: windows-latest
-    needs: [run-shell-commands]
+    needs: [run-shell-commands] # list of job ids
     steps:
       - name: echo a string
         run: Write-Output "Windows string"
       - name: Error step
         run: commanddoesnotexist
+
+# if your commit message has one of these:
+# [skip actions], [actions skip], [skip ci], [ci skip]
+# then the workflow won't run
