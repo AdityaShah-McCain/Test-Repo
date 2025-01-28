@@ -1,0 +1,26 @@
+name: Working Dir and Shells
+on: [push]
+
+# GITHUB_SHA - this is an environment variable which displays the id of the commit
+
+jobs:
+  display-wb-info:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display working dir and list files
+        run: |
+          pwd
+          ls -a
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
+  display-wb-info-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Display working dir and list files
+        run: |
+          pwd
+          ls -a
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
