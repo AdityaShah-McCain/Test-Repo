@@ -8,3 +8,11 @@ jobs:
       - name: Setting an error message
         run: echo "::error::Missing semicolon" # sending a message from our workflow to the runner machine
         # that there is an error
+      - name: Setting an error message with a parameter
+        run: echo "::error title = Error title, file = app.js, line = 2, endLine = 3, col = 5, endColumn = 7:: Missing semicolon"
+      - name: Setting a debug message with a parameter
+        run: echo "::debug title = Debug title, file = app.js, line = 2, endLine = 3, col = 5, endColumn = 7:: Missing semicolon"
+      - name: Setting a warning message with a parameter
+        run: echo "::warning title = Warning title, file = app.js, line = 2, endLine = 3, col = 5, endColumn = 7:: Missing semicolon"
+      - name: Setting a notice message with a parameter
+        run: echo "::notice title = Notice title, file = app.js, line = 2, endLine = 3, col = 5, endColumn = 7:: Missing semicolon"
