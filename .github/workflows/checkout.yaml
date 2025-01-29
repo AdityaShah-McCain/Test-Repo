@@ -9,11 +9,11 @@ jobs:
     runs-ons: ubuntu-latest
     steps:
       - name: List of files before
-        runs: ls -a
+        run: ls -a
       - name: Checkout using action
         uses: actions/checkout@v4
       - name: List of files after
-        runs: ls -a
+        run: ls -a
   checkout-and-display-files:
     runs-on: ubuntu-latest
     steps:
