@@ -1,7 +1,7 @@
 name: Checkout
 on: [push]
 
-# token generated for you and has the access to your repository
+# secrets.GITHUB_TOKEN <- token generated for you and has the access to your repository
 
 jobs:
   checkout-and-display-files:
@@ -15,5 +15,6 @@ jobs:
           git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
           git fetch origin
           git checkout main
+        # main branch downloaded in our working directory
       - name: List files after
         run: ls -a
