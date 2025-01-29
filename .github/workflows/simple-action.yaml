@@ -2,7 +2,7 @@ name: Simple Action
 on: [push]
 
 # see github actions marketplace: https://github.com/marketplace
-# 'uses' when we want to reference an action and not a command ('runs' for that)
+# 'uses' when we want to reference an action and not a command ('run' for that)
 # if the action is a private action (if it lives in your repository) then .gtihub/actions/something/andSoOn
 # if its a public action that you can reference that action using the username and repo name
 # actions/hello-world-javascript-action@<a specific version(mid) or a branch name(worst) or a commit id(best)>
