@@ -1,0 +1,23 @@
+name: Simple Action
+on: [push]
+
+# 'uses' when we want to reference an action and not a command ('runs' for that)
+# if the action is a private action (if it lives in your repository) then .gtihub/actions/something/andSoOn
+# if its a public action that you can reference that action using the username and repo name
+# actions/hello-world-javascript-action@<a specific version(mid) or a branch name(worst) or a commit id(best)>
+# actions/hello-world-javascript-action@<main / v1.1.2 / commit id
+# an action can also recieve some inputs -> using 'with' key
+# we can use the outputs in the subsequent steps (need to give an id first)
+# input, output documented on github of that action
+
+jobs:
+  simple-action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple JS Action
+        id: greet
+        uses: actions/hello-world-javascript-action@e20625deefc6befb00a36b938e0d6932239e9cbd
+        with:
+          who-to-greet: Aditya
+      - name: Log Greeting Time
+        run: echo "${{ steps.greet.outputs.time }}"
