@@ -1,5 +1,5 @@
 # instead of an event triggering a workflow, we can also trigger it manually
-name: Manuallt Triggered
+name: Manually Triggered
 on:
   workflow_dispatch:
 
