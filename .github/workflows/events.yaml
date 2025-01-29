@@ -1,5 +1,12 @@
 name: Repository Events
-on: [push, pull_request, issues]
+# to check for what causes the wf to trigger by default (activity types) (for example for pull_request) check the website
+# on: [push, pull_request, issues]
+on:
+  push:
+  pull_request:
+    types: [opened, assigned, reopened, synchronize]
+  issues:
+    types: [opened]
 
 # for more info on diff kinds of events: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
 # GITHUB_SHA and GITHUB_REF are environment variable that provide imp context about the specific run and the repo's state
