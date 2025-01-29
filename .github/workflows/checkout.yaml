@@ -6,7 +6,7 @@ on: [push]
 
 jobs:
   checkout-using-action:
-    runs-ons: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: List of files before
         run: ls -a
