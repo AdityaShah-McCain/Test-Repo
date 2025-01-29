@@ -1,6 +1,9 @@
 name: Repository Events
 # to check for what causes the wf to trigger by default (activity types) (for example for pull_request) check the website
 # on: [push, pull_request, issues]
+# pull_request_target: when we want the wf to trigger for the base branch when a pull_request is made (opened for example)
+# if you want to do testing or deploying, then pull_request should be used
+
 on:
   push:
   pull_request:
