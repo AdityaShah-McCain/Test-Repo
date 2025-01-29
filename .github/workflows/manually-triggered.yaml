@@ -1,4 +1,6 @@
 # instead of an event triggering a workflow, we can also trigger it manually
+# quite literally adds a run button
+# https://cli.github.com/manual/
 name: Manually Triggered
 on:
   workflow_dispatch:
