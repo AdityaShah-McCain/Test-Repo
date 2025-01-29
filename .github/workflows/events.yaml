@@ -6,8 +6,27 @@ name: Repository Events
 
 on:
   push:
-  pull_request:
+    branches:
+      - main
+      - "feature/*" # matches feature/feature1, but not feature/feature1/feature2, for that use the below given format
+      - "feature/**" # matches feature/feature1, feature/feature1/feature2
+      - "!feature/feature1" # if you want it to excluded, you have to put it after
+      # https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+    # branches-ignore: # run for all branches except these (cannot run branches and branches-ignore at the same time)
+    #   - develop
+    tags:
+      - v1.*
+      - "!v1.1.1" # we also have tags-ignore, like branches-ignore
+    paths:
+      - "**.js" # we also have paths-ignore, similar to above
+      - "!app.js"
+  # this wf will only run when it matches all the filters (branches, tags and paths)
+  pull_request: # pull request will only work for changes in js files and if it is targeted towards main branch
     types: [opened, assigned, reopened, synchronize]
+    branches:
+      - main
+    paths: # tags ofcourse are not applicable
+      - "**.js"
   issues:
     types: [opened]
 

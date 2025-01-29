@@ -1,11 +1,15 @@
 # running a workflow based on another workflow: using workflow-run
 # we can only have upto three levels of testing
+# https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#workflow_run
 
 name: Workflow Run
 on:
   workflow_run:
     workflows: [Repository Events]
     types: [completed]
+    branches: # as long as the repo events ran on the branches specified here
+      - main
+
 jobs:
   echo-string:
     runs-on: ubuntu-latest
