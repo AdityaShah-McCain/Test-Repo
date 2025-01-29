@@ -8,7 +8,7 @@ on: [push]
 # actions/hello-world-javascript-action@<main / v1.1.2 / commit id
 # an action can also recieve some inputs -> using 'with' key
 # we can use the outputs in the subsequent steps (need to give an id first)
-# input, output documented on github of that action
+# input, output documented on github of the action we are using
 
 jobs:
   simple-action:
