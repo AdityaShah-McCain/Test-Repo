@@ -1,0 +1,18 @@
+name: Repository Events
+on: [push, pull_request, issues]
+
+# for more info on diff kinds of events: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows
+# GITHUB_SHA and GITHUB_REF are environment variable that provide imp context about the specific run and the repo's state
+# first one represents the commit hash (SHA) of the commit that triggered the workflow
+# eg. GITHUB_SHA=6a2b46c8050ae3fbd7f8bcd7a517cdb2872e54b3
+# second one repreents the git reference (branch or tag) that triggered the workflow
+# eg. GITHUB_REF=refs/heads/main or GITHUB_REF=refs/tags/v1.0.0
+
+jobs:
+  checkout-test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REF
+      - uses: actions/checkout@v4
