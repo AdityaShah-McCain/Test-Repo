@@ -1,3 +1,6 @@
+# Available Functions (object filters are also in here):
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/evaluate-expressions-in-workflows-and-actions#functions
+
 name: Expressions and Contexts
 run-name: "Expressions and Contexts by @${{ github.actor }}, event: ${{ github.event_name }}"
 on:
