@@ -8,10 +8,12 @@ on:
 
 # expressions are not case sensitive: string == String, this is true
 # steps.expressions (steps.id of some other step)
+#toJson() <- this is a function
 
 jobs:
   using-expressions-and-contexts:
     runs-on: ubuntu-latest
+    if: github.event_name != 'push'
     steps:
       - name: Expressions
         id: expressions
