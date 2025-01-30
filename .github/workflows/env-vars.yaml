@@ -1,13 +1,34 @@
 name: Environment Variables
 on: [push]
 
+# we can define our own env-vars
+# we can do this at three levels
+
+env:
+  WF_LEVEL_ENV: Available to all jobs
+
 jobs:
   env-vars-and-context:
     runs-on: ubuntu-latest
+    # for if, we can only use context
+    if: github.ref == 'refs/heads/main'
+    env:
+      JOB_LEVEL_ENV: Available to all steps in env-vars-and-context job
     steps:
       - name: Log ENV VAR
         # will be evaluated by the runner machine
+        # will be stored on the runner machine
         run: echo $GITHUB_REF
       - name: Log Context
         # this part will be sent to the runner machine after being already evaluated
+        # evaluated by github workflows and then sent as a string to the runner machine
         run: echo '${{ github.ref }}'
+      - name: Log custom ENV VAR
+        env:
+          STEP_LEVEL_ENV: It is only available to this step
+          WF_LEVEL_ENV: Overriden in step
+          run: |
+            echo '${{ env.STEP_LEVEL_ENV }}'
+            echo $STEP_LEVEL_ENV
+            echo $WF_LEVEL_ENV
+            echo $JOB_LEVEL_ENV
