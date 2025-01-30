@@ -2,7 +2,7 @@ name: Stale Issues and PRs
 on:
   schedule:
     - cron: "37 10 * * *" # cron schedule expression (mins, hours, days of the month, month, days of the week)
-    - cron: "18 5 * * *"
+    - cron: "21 5 * * *"
     - cron: "0/5 * * * *" # every 5 minutes (this is the minimum your can do in github actions)
 # * = any value
 # * * * * * = every minute
