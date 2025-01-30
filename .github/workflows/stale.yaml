@@ -19,5 +19,5 @@ jobs:
       - uses: actions/stale@v9.1.0 # we have to run it everday to check for stale issues or prs
         with:
           stale-issue-message: "This is some message."
-          days-before-stale: 1 # how old the issue or pr should be
+          days-before-stale: 0 # how old the issue or pr should be
           days-before-close: 5 # how many days the stale issue or pr will remain open before closing it
