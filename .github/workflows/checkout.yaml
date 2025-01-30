@@ -3,6 +3,7 @@ on: [push]
 
 # secrets.GITHUB_TOKEN <- token generated for you and has the access to your repository
 # to get files from our repo on to the runner vm
+# we are using secrets context
 
 jobs:
   checkout-using-action:

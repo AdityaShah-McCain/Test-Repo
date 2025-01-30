@@ -32,6 +32,8 @@ on:
         type: environment
         required: true
 
+# inputs. ... <- here inputs is a context
+
 jobs:
   log-info:
     runs-on: ubuntu-latest
