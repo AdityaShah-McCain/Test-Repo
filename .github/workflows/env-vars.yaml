@@ -3,6 +3,7 @@ on: [push]
 
 # we can define our own env-vars
 # we can do this at three levels
+# here we are statically defining the env vars
 
 env:
   WF_LEVEL_ENV: Available to all jobs
@@ -23,6 +24,12 @@ jobs:
         # this part will be sent to the runner machine after being already evaluated
         # evaluated by github workflows and then sent as a string to the runner machine
         run: echo '${{ github.ref }}'
+      - name: Set Env Var
+        # this new env var will be available for all the subsequent steps
+        # syntax for powershell can be different
+        run: |
+          echo "NEW_ENV_VAR=$(date)" >> "$GITHUB_ENV"
+          echo "JOB_LEVEL_ENV=$(RANDOM)" >> "$GITHUB_ENV"
       - name: Log custom ENV VAR
         env:
           STEP_LEVEL_ENV: It is only available to this step
@@ -32,3 +39,4 @@ jobs:
           echo $STEP_LEVEL_ENV
           echo $WF_LEVEL_ENV
           echo $JOB_LEVEL_ENV
+          echo $NEW_ENV_VAR
