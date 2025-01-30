@@ -1,7 +1,3 @@
-# secrets are encrypted while variables are not
-# secret at env level will override secret at repo level, and secret at repo level will override secret at
-# org level (ofcourse assuming that they all have the same name)
-
 name: Environment Variables
 on: [push]
 
