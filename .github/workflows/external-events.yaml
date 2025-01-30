@@ -1,4 +1,6 @@
-# have to run on the default branch (in our case 'main')
+# similar to workflow_dispatch, but we don't have to manually trigger our workflow, but it can to used to 
+# trigger a wf based on some external event
+# have to run on the default branch (in our case 'main' branch)
 name: External Events
 on:
   repository_dispatch:
