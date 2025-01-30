@@ -3,6 +3,7 @@ on: [push]
 
 # failure() is a status check function
 # success() is not needed, its the deafult behaviour
+# only steps.step-2.conclusion == 'failure' won't work, we need to add failure() && steps.step-2.conclusion == 'failure'
 
 jobs:
   job-1:
@@ -10,11 +11,12 @@ jobs:
     steps:
       - name: Step 1
         run: sleep 20 # 20 seconds
-      - name: Fail
+      - name: Step 2
+        id: step-2
         run: exit 1
       - name: Runs on Failure
-        if: failure()
-        run: echo "Runs only on failure"
+        if: failure() && steps.step-2.conclusion == 'failure'
+        run: echo "Step 2 has failed"
       - name: Runs on Success
         # This if condition is not needed (DEFAULT BEHAVIOUR)
         if: success()
