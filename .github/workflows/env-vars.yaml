@@ -29,7 +29,7 @@ jobs:
         # syntax for powershell can be different
         run: |
           echo "NEW_ENV_VAR=$(date)" >> "$GITHUB_ENV"
-          echo "JOB_LEVEL_ENV=$(RANDOM)" >> "$GITHUB_ENV"
+          echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
       - name: Log custom ENV VAR
         env:
           STEP_LEVEL_ENV: It is only available to this step
