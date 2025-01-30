@@ -1,0 +1,23 @@
+name: Stale Issues and PRs
+on:
+  schedule:
+    - cron: "37 10 * * *" # cron schedule expression (mins, hours, days of the month, month, days of the week)
+    - cron: "38 10 * * *"
+    - cron: "0/5 * * * *" # every 5 minutes (this is the minimum your can do in github actions)
+# * = any value
+# * * * * * = every minute
+# 2 * * * * = second minute of every hour
+# 1,2 * * * * = every minute one and two
+# 1-3 * * * * = every minute one, two and three
+# 0 is sunday and 6 is saturday
+# https://crontab.guru/ (check this website for more info)
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9.1.0 # we have to run it everday to check for stale issues or prs
+        with:
+          stale-issue-message: "This is some message."
+          days-before-stale: 1 # how old the issue or pr should be
+          days-before-close: 5 # how many days the stale issue or pr will remain open before closing it
