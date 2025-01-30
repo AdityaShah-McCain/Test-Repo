@@ -32,7 +32,7 @@ jobs:
           echo "JOB_LEVEL_ENV=$RANDOM" >> "$GITHUB_ENV"
       - name: Multiline ENV VAR
         run: | # have to add a new line after generating the random joke
-          DELIMITER = 1234
+          DELIMITER=1234
           echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
           echo "This is a joke: " >> "$GITHUB_ENV"
           curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
