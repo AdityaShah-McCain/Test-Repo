@@ -9,11 +9,21 @@ on:
 # expressions are not case sensitive: string == String, this is true
 # steps.expressions (steps.id of some other step)
 #toJson() <- this is a function
+# contains, join <- a function
+# ${{ join('[1, 2, 3]', ', ') }} => "1, 2, 3"
 
 jobs:
+  runs-on-issues-and-prs:
+    runs-on: ubuntu-latest
+    # if: github.event_name == 'issues' || github.event_name == 'pull_request'
+    if: contains(fromJson('["issues", "pull_request"]'), github.event_name)
+    steps:
+      - name: Runs only if issue has a bug label # ...*.name is object filtering syntax
+        if: contains(git.event.issue.label.*.name, 'bug')
+        run: echo ${{ join(git.event.issue.label.*.name, ', ') }}
   using-expressions-and-contexts:
     runs-on: ubuntu-latest
-    if: github.event_name != 'push'
+    if: github.event_name == 'push'
     steps:
       - name: Expressions
         id: expressions
