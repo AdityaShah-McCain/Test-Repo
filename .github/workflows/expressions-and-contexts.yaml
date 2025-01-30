@@ -19,8 +19,8 @@ jobs:
     if: contains(fromJson('["issues", "pull_request"]'), github.event_name)
     steps:
       - name: Runs only if issue has a bug label # ...*.name is object filtering syntax
-        if: contains(git.event.issue.label.*.name, 'bug')
-        run: echo ${{ join(git.event.issue.label.*.name, ', ') }}
+        if: contains(github.event.issue.label.*.name, 'bug')
+        run: echo ${{ join(github.event.issue.label.*.name, ', ') }}
   using-expressions-and-contexts:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
