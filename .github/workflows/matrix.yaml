@@ -6,10 +6,11 @@ on: [push]
 
 jobs:
   node-matrix:
-    runs-on: ubuntu-latest
     strategy:
       matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest] # now our matrix is three dimensional
         node-version: [14, 15, 16] # here node-version is an arbitary key
+    runs-on: ${{ matrix.os }} # ${{}} <- a context
     steps:
       - run: node -v
       - uses: actions/setup-node@v4.2.0
