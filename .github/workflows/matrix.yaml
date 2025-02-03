@@ -26,8 +26,8 @@ jobs:
         include:
           - os: ubuntu-latest
             is-ubuntu: true
-          - os: macos-latest
-            node-version: 15
+        #   - os: macos-latest
+        #     node-version: 15
           - experimental: false
           - os: ubuntu-latest
             node-version: 16
@@ -37,10 +37,12 @@ jobs:
         exclude:
           - os: ubuntu-latest
             node-version: 14
-      fail-fast: false # see the description
+      fail-fast: true # see the description
     #   max-parallel: 3 # only 3 jobs can run parallely
     runs-on: ${{ matrix.os }} # ${{}} <- a context
     steps:
+      - if: matrix.experimental == true
+        run: exit 1
       - run: echo '${{ toJson(matrix) }}'
       - run: node -v
       - uses: actions/setup-node@v4.2.0
