@@ -9,8 +9,9 @@ jobs:
   job-1:
     runs-on: ubuntu-latest
     steps:
-      # - name: Step 1
-      #   run: sleep 20 # 20 seconds
+      - name: Step 1
+        run: sleep 90 # 20 seconds
+        timeout-minutes: 1 # if this step takes longer than 60 secs than it fails
       - name: Step 2
         id: step-2
         continue-on-error: true
