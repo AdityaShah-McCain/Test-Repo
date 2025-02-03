@@ -1,18 +1,47 @@
 name: Matrix
 on: [push]
 
+# how to run the same job multiple times using matrix
 # in order to use different node versions, we can use actions/setup-node (this is an official action)
 # we also have similar actions for different languages like python
 
+# if it can merge then it will but if it can't then new combination will be created
+# can it be merged without overridding original properties
+# X {os: ubuntu-latest, node-version: 14, is-ubuntu: true, experimental: false}
+# {os: ubuntu-latest, node-version: 15, is-ubuntu: true, experimental: false}
+# {os: ubuntu-latest, node-version: 16, is-ubuntu: true, experimental: true} we changed this
+# {os: windows-latest, node-version: 14, experimental: false}
+# {os: windows-latest, node-version: 15, experimental: false}
+# {os: windows-latest, node-version: 16, experimental: false}
+# {os: macos-latest, node-version: 15} this is not an original combination so experimental won't be added here
+# {os: ubuntu-latest, node-version: 17}
+
 jobs:
   node-matrix:
-    continue-on-error: true # before if 1 job fails, other jobs aborted
+    continue-on-error: false # before if 1 job fails, our workflow will fail
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest] # now our matrix is 2 dimensional (all 6 jobs will run in parallel)
+        os: [ubuntu-latest, windows-latest] # now our matrix is 2 dimensional (all 6 jobs will run in parallel)
         node-version: [14, 15, 16] # here node-version is an arbitary key
+        include:
+          - os: ubuntu-latest
+            is-ubuntu: true
+          - os: macos-latest
+            node-version: 15
+          - experimental: false
+          - os: ubuntu-latest
+            node-version: 16
+            experimental: true
+          - os: ubuntu-latest
+            node-version: 17
+        exclude:
+          - os: ubuntu-latest
+            node-version: 14
+      fail-fast: false # see the description
+    #   max-parallel: 3 # only 3 jobs can run parallely
     runs-on: ${{ matrix.os }} # ${{}} <- a context
     steps:
+      - run: echo '${{ toJson(matrix) }}'
       - run: node -v
       - uses: actions/setup-node@v4.2.0
         with:
