@@ -6,9 +6,10 @@ on: [push]
 
 jobs:
   node-matrix:
+    continue-on-error: true # before if 1 job fails, other jobs aborted
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest] # now our matrix is three dimensional
+        os: [ubuntu-latest, windows-latest, macos-latest] # now our matrix is 2 dimensional (all 6 jobs will run in parallel)
         node-version: [14, 15, 16] # here node-version is an arbitary key
     runs-on: ${{ matrix.os }} # ${{}} <- a context
     steps:
