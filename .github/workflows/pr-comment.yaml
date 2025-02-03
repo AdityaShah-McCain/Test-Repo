@@ -1,6 +1,7 @@
 # pull_request_target: when we want the wf to trigger for the base branch when a pull_request is made (opened for example)
 # if you want to do testing or deploying, then pull_request should be used
 # https://github.com/actions/github-script -> allows you to write javascript in your steps
+
 name: Pull Request Comment
 on:
   pull_request_target:
