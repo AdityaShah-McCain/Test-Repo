@@ -18,7 +18,7 @@ on: [push]
 
 jobs:
   node-matrix:
-    continue-on-error: false # before if 1 job fails, our workflow will fail
+    continue-on-error: ${{ matrix.experimental == true }} # before if 1 job fails, our workflow will fail
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest] # now our matrix is 2 dimensional (all 6 jobs will run in parallel)
