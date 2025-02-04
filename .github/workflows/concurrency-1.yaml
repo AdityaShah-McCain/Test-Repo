@@ -8,7 +8,8 @@ on:
         type: environment
         required: true
 concurrency:
-  group: concurrency-1 # concurrency group
+#   group: concurrency-1 # concurrency group
+  group: ${{ github.events.inputs.environment }}
   cancel-in-progress: true
 # if multiple workflows haev same concurrency group then they won't run at the same time
 jobs:
