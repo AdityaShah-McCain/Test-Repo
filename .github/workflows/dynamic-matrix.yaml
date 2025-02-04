@@ -4,17 +4,23 @@ on:
     inputs:
       os:
         description: Operating System
-        default: "windows-latest, ubuntu-latest"
+        default: "windows-latest,ubuntu-latest"
         type: string
       node-version:
         description: Node Version
-        default: "14, 15, 16"
+        default: "14,15,16"
         type: string
 
 jobs:
-  prepare-matrix: # take our string inputs and convert them so that we can pass them onto our matrix
+  prepare-matrix: # take our string inputs and convert them into arrays so that we can pass them onto our matrix
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/github-script@v7.0.1
+        id: matrix-arrays
+        with:
+          script: "return {os: context.payload.inputs['os'].split(','), 'node-version': context.payload.inputs['node-version'].split(',')}"
+          result-encoding: json
+      - run: echo '${{ steps.matrix-arrays.outputs.result }}'
       - run: echo "step-output=value" >> $GITHUB_OUTPUT
         id: step-1
       - run: echo "step-output=value 2" >> $GITHUB_OUTPUT
