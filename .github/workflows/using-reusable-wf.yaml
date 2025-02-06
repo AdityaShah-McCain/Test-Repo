@@ -1,0 +1,21 @@
+name: Calling Reusable Workflows
+on:
+  workflow_dispatch:
+    inputs:
+        name:
+          description: 'Input description'
+          type: string
+          default: 'Aditya'
+          required: false
+
+jobs:
+  calling-a-reusable-wf:
+    # uses at job level (not at step level) and we don't need to specify runs-on as we just need to call the other wf
+    # uses: ./.github/workflows
+    uses: AdityaShah-McCain/workflows/.github/workflows/reusable.yaml@main
+    # ...@commit-id or version
+    with:
+      name: ${{ inputs.name }}
+    secrets:
+      access-token: ${{ secrets.ACCESS_TOKEN }} # we can do this or
+    # secrets: inherit # we can access all secrets by using this
