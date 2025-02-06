@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
         name:
-          description: 'Input description'
+          description: "Input description"
           type: string
-          default: 'Aditya'
+          default: "Aditya"
           required: false
 
 jobs:
