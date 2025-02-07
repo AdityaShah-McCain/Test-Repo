@@ -16,7 +16,7 @@ jobs:
         with:
           path: ~/.npm # this is where we need to cache for macos or ubuntu
         #   dynamic key
-          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }} # == ubuntu-npm-cache-79834 (some hash)
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }} # == Linux-npm-cache-79834 (some hash)
           # whenever we install more dependencies, the above hash will change the key, so we will install older cache instead, and once our workflow is done, we will create a new cache with out new hash
           restore-keys: | # if we don't have a cache that matches the above key, we cna provide other keya that we can search for
             ${{ runner.os }}-npm-cache-
