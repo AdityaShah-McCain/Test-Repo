@@ -3,7 +3,12 @@
 # if you are using setup-* action, then we don't need to handle caching, we can pass cache: 'npm' and it will handle caching for us
 # actions/cache@v3
 
+# Artifacts:
 # skipping the implementation of artifacts: https://www.udemy.com/course/github-actions/learn/lecture/38481352#content
+# https://github.com/github-actions-course/course-code/tree/201148fc1c9380b66e26cdcd3fe8404b961b1add/.github/workflows
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/storing-and-sharing-data-from-a-workflow#passing-data-between-jobs-in-a-workflow
+# download artifacts: https://github.com/actions/download-artifact
+# upload artifacts: https://github.com/actions/upload-artifact
 
 name: Caching and Artifacts
 on: [workflow_dispatch]

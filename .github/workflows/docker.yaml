@@ -1,0 +1,28 @@
+name: Docker
+on: [workflow_dispatch]
+
+jobs:
+  docker-job:
+    runs-on: ubuntu-latest
+    # container: node:23-alpine3.20 # if you are using dockerhub, image_name:tag
+    container:
+      image: node:23-alpine3.20
+    #   credentials: # we have to do this if we using a private image, in our case the image is public
+    #     username:
+    #     password:
+      env: # environment variables
+        API_URL: some-url.com
+      ports: # array of ports
+        - 80
+    #   volumes: # three types of volumes (we don't have these paths in reality so we are commenting it)
+    #     - vol_name:/path/in/container # this is named volume
+    #     - /path/in/container # unnamed (anonymous) volume
+    #     - /path/in/host:/path/in/container # path in host machine, mapped to path in container
+    #   options: --cpus 1 # options are any options that you can post to the Docker Create command except network and entry point
+    steps: # these steps won't directly run on the runner machine, it will run inside the container
+      - name: Log Node & OS Versions
+        run: |
+          node -v
+          cat /etc/os-release
+      - name: Log Env
+        run: echo $API_URL
