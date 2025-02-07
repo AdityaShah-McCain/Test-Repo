@@ -7,6 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Cache node modules
+        id: cache-dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm # this is where we need to cache for macos or ubuntu
+          key: "npm-cache" # this key will be used to retrieve the cache
+      # this step will create an output
+      - name: Display cache outputs
+        run: echo '${{ toJSON(steps.cache-dependencies.outputs) }}'
       - name: Install dependencies
         run: npm install
       - name: Use axios # axios is a library you can use to send requests
