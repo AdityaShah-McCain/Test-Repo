@@ -1,3 +1,6 @@
+# whenever we install new dependencies, package-lock.json file is changed, we need to use this so that that dependency is automatically cached
+# we will use a dynamic key to do this
+
 name: Caching and Artifacts
 on:
   workflow_dispatch:
@@ -12,8 +15,14 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm # this is where we need to cache for macos or ubuntu
-          key: "npm-cache" # this key will be used to retrieve the cache
-      # this step will create an output
+        #   dynamic key
+          key: ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }} # == ubuntu-npm-cache-79834 (some hash)
+          # whenever we install more dependencies, the above hash will change the key, so we will install older cache instead, and once our workflow is done, we will create a new cache with out new hash
+          restore-keys: | # if we don't have a cache that matches the above key, we cna provide other keya that we can search for
+            ${{ runner.os }}-npm-cache-
+            ${{ runner.os }}-
+        #   key: "npm-cache" # this key will be used to retrieve the cache, this is a static key with no variables installed
+      # the above step will create an output
       - name: Display cache outputs
         run: echo '${{ toJSON(steps.cache-dependencies.outputs) }}'
       - name: Install dependencies
