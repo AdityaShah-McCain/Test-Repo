@@ -7,6 +7,12 @@ on:
         value: ${{ jobs.generate_output.outputs.date }}
 
 jobs:
+  nested-workflow-call:
+    uses: AdityaShah-McCain/workflows/.github/workflows/reusable.yaml@main
+    with:
+      name: "Aditya"
+    secrets:
+      access-token: ${{ secrets.ACCESS_TOKEN }} # this secret is passed on by the caller wf
   generate_output:
     runs-on: ubuntu-latest
     outputs:
