@@ -1,3 +1,5 @@
+# documentation on reusable wfs: https://docs.github.com/en/actions/sharing-automations/reusing-workflows
+
 name: Calling Reusable Workflows
 on:
   workflow_dispatch:
