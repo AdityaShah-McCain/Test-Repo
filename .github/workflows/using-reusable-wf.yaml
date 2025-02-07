@@ -19,3 +19,10 @@ jobs:
     secrets:
       access-token: ${{ secrets.ACCESS_TOKEN }} # we can do this or
     # secrets: inherit # we can access all secrets by using this
+  calling-a-reusable-wf-in-the-same-repo:
+    uses: ./.github/workflows/reusable-wf.yaml
+  using-reusable-wf-output:
+    runs-on: ubuntu-latest
+    needs: calling-a-reusable-wf-in-the-same-repo
+    steps:
+      - run: echo ${{ needs.calling-a-reusable-wf-in-the-same-repo.outputs.date }}
