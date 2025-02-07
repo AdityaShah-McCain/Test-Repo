@@ -1,0 +1,25 @@
+{
+  "name": "lecture-4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdityaShah-McCain/Test-Repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdityaShah-McCain/Test-Repo/issues"
+  },
+  "homepage": "https://github.com/AdityaShah-McCain/Test-Repo#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1"
+  }
+}
