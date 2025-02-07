@@ -20,6 +20,8 @@ jobs:
       access-token: ${{ secrets.ACCESS_TOKEN }} # we can do this or
     # secrets: inherit # we can access all secrets by using this
   calling-a-reusable-wf-in-the-same-repo:
+    # permissions:
+    #   issues: read # the reusable wf will have permissions defined in caller wf or less
     uses: ./.github/workflows/reusable-wf.yaml # we have to pass on our secret
     secrets: inherit # we are passing on all secrets of the caller wf
     # secrets: # this is to pass this one specific secret
