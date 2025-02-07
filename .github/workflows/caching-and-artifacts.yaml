@@ -1,9 +1,14 @@
 # whenever we install new dependencies, package-lock.json file is changed, we need to use this so that that dependency is automatically cached
 # we will use a dynamic key to do this
+# if you are using setup-* action, then we don't need to handle caching, we can pass cache: 'npm' and it will handle caching for us
+# actions/cache@v3
+
+# skipping the implementation of artifacts: https://www.udemy.com/course/github-actions/learn/lecture/38481352#content
 
 name: Caching and Artifacts
-on:
-  workflow_dispatch:
+on: [workflow_dispatch]
+# on:
+#   workflow_dispatch:
 
 jobs:
   use-axios:
