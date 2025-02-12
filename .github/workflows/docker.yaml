@@ -4,6 +4,7 @@ on: [workflow_dispatch]
 # we can configure a job to run in a docker container or we can also configure a step to run in a docker 
 # container
 # if we want to run our job in a container, we have to run the job in a linux machine (ubuntu)
+# the jobs container and the steps container will run as sibling containers in the runner machine
 
 jobs:
   docker-job:
@@ -32,5 +33,19 @@ jobs:
           cat /etc/os-release
       - name: Log Env
         run: echo $API_URL # to check if we have access to the environment variable we passed up above
+      # when you define a docker image, in your DOCKERFILE, you can have a ENTRYPOINT
+      # the entrypoint can have to forms, the shell form and the executable form
       - name: Container in a step
+        uses: docker://node:18.16-alpine3.17 # uses key: instead of specifying an action, we specify a docker image
+        # but the image by itself won't do anything
+        with: # the entrypoint below will override the entrypoint of the docker image we are using
+              # but in here we don't haev the shell form and executable file like in dockerfile.
+              # in here we just add a path to an executable
+              # args are going to be used instead of the cmd instruction in the dockerfile
+          entrypoint: /usr/local/usr/node # path to the node in the container (ubuntu container(?))
+          # have to add entrypoint if our image don't have one by default (in our case it does)
+          args: -p 2+3
+      - name: Log the node version
         uses: docker://node:18.16-alpine3.17
+        with:
+          args: -v
