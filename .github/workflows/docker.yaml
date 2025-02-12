@@ -42,7 +42,7 @@ jobs:
               # but in here we don't haev the shell form and executable file like in dockerfile.
               # in here we just add a path to an executable
               # args are going to be used instead of the cmd instruction in the dockerfile
-          entrypoint: /usr/local/usr/node # path to the node in the container (ubuntu container(?))
+          entrypoint: /usr/local/bin/node # path to the node in the container (ubuntu container(?))
           # have to add entrypoint if our image don't have one by default (in our case it does)
           args: -p 2+3
       - name: Log the node version
