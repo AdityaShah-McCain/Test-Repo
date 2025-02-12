@@ -36,7 +36,7 @@ jobs:
       # when you define a docker image, in your DOCKERFILE, you can have a ENTRYPOINT
       # the entrypoint can have to forms, the shell form and the executable form
       - name: Container in a step
-        uses: docker://node:23-alpine3.20 # uses key: instead of specifying an action, we specify a docker image
+        uses: docker://node:18.16-alpine3.17 # uses key: instead of specifying an action, we specify a docker image
         # but the image by itself won't do anything
         with: # the entrypoint below will override the entrypoint of the docker image we are using
               # but in here we don't haev the shell form and executable file like in dockerfile.
@@ -46,6 +46,6 @@ jobs:
           # have to add entrypoint if our image don't have one by default (in our case it does)
           args: -p 2+3
       - name: Log the node version
-        uses: docker://node:23-alpine3.20
+        uses: docker://node:18.16-alpine3.17
         with:
           args: -v
